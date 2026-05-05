@@ -31,18 +31,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request->all());
+
         $this->validate($request, [
-            'name' => 'required|string|min:3|max:255',
+            'nombre' => 'required|string|min:3|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|max:255|confirmed',
             'password_confirmation' => 'required|string|min:8|max:255',
         ]);
 
         $user = User::create([
-                'name' => $request->name,
+                'nombre' => $request->nombre,
+                'apellido_paterno' => $request->apellido_paterno,
+                'apellido_materno' => $request->apellido_materno,
+                'rut' => $request->rut,
+                'id_direccion' => $request->id_direccion,
+                'id_area' => $request->id_area,
+                'telefono' => $request->telefono,
+                'id_calidadJuridica' => $request->id_calidadJuridica,
+                'role' => $request->role,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
+                'estado' => 1,
             ]);
+
 
         if ($user instanceof Model) {
             toastr()->warning('Data has been saved successfully!');

@@ -17,4 +17,10 @@ class SolicitudGas extends Model
         'fecha_entrega',
         'costo_total'
     ];
+
+    public function detalles()
+    {
+        return $this->hasMany(DetalleSolicitud::class);
+    }
+
 }

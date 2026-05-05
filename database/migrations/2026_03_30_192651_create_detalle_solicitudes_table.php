@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('detalle_solicitudes', function (Blueprint $table) {
             $table->id();
                 $table->unsignedBigInteger('id_tipo_gas');
-                $table->integer('cantidad');
+                $table->string('codigo_gas')->nullable();
                 $table->integer('valor_unitario')->nullable();
-                $table->integer('valor_total')->nullable();
-                $table->unsignedBigInteger('solicitud_gas_id');
+                //id clave foranea
+                $table->foreignId('solicitud_gas_id')->constrained('solicitud_gases')->onDelete('cascade');
             $table->timestamps();
         });
     }

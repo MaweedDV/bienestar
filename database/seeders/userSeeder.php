@@ -14,16 +14,18 @@ class userSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Manuel Gallardo',
+            'nombre' => 'Manuel Jesus',
+            'apellido_paterno' => 'Gallardo',
+            'apellido_materno' => 'Pavez',
             'rut' => '18935579-3',
-             'id_cargo' => null,
-             'id_area' => null,
-             'id_departamento' => null,
-             'telefono' => null,
-             'id_calidadJuridica' => null,
+            'id_direccion' => 1,
+             'id_area' => 1,
+             'telefono' => '950664156',
+             'id_calidadJuridica' => 1,
             'email' => 'manuel.gallardo@puertomontt.cl',
             'role' => 'admin',
             'password' => bcrypt('obtcrew69'),
+            'estado' => 1,
         ]);
     }
 }

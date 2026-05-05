@@ -35,7 +35,7 @@
                                         <th>Estado</th>
                                         <th>Cantidad total de vales</th>
                                         <th>Fecha de ingreso</th>
-                                        <th>Fecha de aprobación</th>
+                                        <th>Fecha de entrega</th>
                                         <th>Detalle</th>
                                     </tr>
                                 </thead>
@@ -46,7 +46,7 @@
                                             <td>{{ $solicitud->estado }}</td>
                                             <td>{{ $solicitud->cantidadTotalVales }}</td>
                                             <td>{{ $solicitud->fecha_solicitud }}</td>
-                                            <td>{{ $solicitud->fecha_modificacion ?? 'Pendiente' }}</td>
+                                            <td>{{ $solicitud->fecha_entrega ?? 'Pendiente' }}</td>
                                             <td>
                                                 <a href="{{ route('solicitudFuncionario.show', $solicitud->id) }}" class="btn btn-sm btn-primary">Ver detalle</a>
                                             </td>

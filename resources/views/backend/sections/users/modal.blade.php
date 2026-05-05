@@ -16,14 +16,71 @@
                     <div class="block-content">
                         <div class="row mb-4">
                             <div class="col-6">
-                                <label class="form-label" for="example-ltf-email2">Nombre</label>
-                                <input type="text" class="form-control form-control" id="name" name="name"
+                                <label class="form-label" for="example-ltf-email2">Nombres</label>
+                                <input type="text" class="form-control form-control" id="nombre" name="nombre"
                                     placeholder="Ingrese su nombre">
-                                @error('name')
+                                @error('nombre')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="example-ltf-email2">Apellido Paterno</label>
+                                <input type="text" class="form-control form-control" id="apellido_paterno" name="apellido_paterno"
+                                    placeholder="Ingrese su apellido paterno">
+                                @error('apellido_paterno')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="example-ltf-email2">Apellido Materno</label>
+                                <input type="text" class="form-control form-control" id="apellido_materno" name="apellido_materno"
+                                    placeholder="Ingrese su apellido materno">
+                                @error('apellido_materno')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="example-ltf-email2">RUT</label>
+                                <input type="text" class="form-control form-control" id="rut" name="rut"
+                                    placeholder="Ingrese su RUT">
+                                @error('rut')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="example-select-floating">Dirección</label>
+                                <select class="form-select" id="example-select-floating" name="id_direccion"
+                                    aria-label="Floating label select example">
+                                    <option selected="" disabled>Seleccione una dirección</option>
+                                    <option value="1">Dirección 1</option>
+                                    <option value="2">Dirección 2</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="example-select-floating">Area</label>
+                                <select class="form-select" id="example-select-floating" name="id_area"
+                                    aria-label="Floating label select example">
+                                    <option selected="" disabled>Seleccione un área</option>
+                                    <option value="1">Área 1</option>
+                                    <option value="2">Área 2</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="example-select-floating">Calidad Juridica</label>
+                                <select class="form-select" id="example-select-floating" name="id_calidadJuridica"
+                                    aria-label="Floating label select example">
+                                    <option selected="" disabled>Seleccione una calidad jurídica</option>
+                                    <option value="1">Calidad Jurídica 1</option>
+                                    <option value="2">Calidad Jurídica 2</option>
+                                </select>
                             </div>
                             <div class="col-6">
                                 <label class="form-label" for="example-select-floating">Rol</label>
@@ -34,20 +91,35 @@
                                     <option value="funcionario">Funcionario</option>
                                 </select>
                             </div>
+                              <div class="col-6">
+                                <label class="form-label" for="example-ltf-email2">Telefono</label>
+                                <input type="text" class="form-control form-control" id="telefono" name="telefono"
+                                    placeholder="Ingrese su telefono">
+                                @error('telefono')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             <div class="col-12">
                                 <label class="form-label" for="example-ltf-email2">Correo electronico</label>
                                 <input type="email" class="form-control form-control" id="email" name="email"
                                     placeholder="Ingrese su correo electronico">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="col-6">
                                 <label class="form-label" for="example-ltf-email2">Contraseña</label>
-                                <input type="password" class="form-control form-control" id="example-ltf-email2"
+                                <input type="password" class="form-control form-control" id="password"
                                     name="password" placeholder="Ingrese su contraseña">
                             </div>
                             <div class="col-6">
                                 <label class="form-label" for="example-ltf-email2">Confirmar contraseña</label>
-                                <input type="password" class="form-control form-control" id="signup-password-confirm"
+                                <input type="password" class="form-control form-control" id="password_confirmation"
                                     name="password_confirmation" placeholder="Confirme su contraseña" />
                             </div>
                         </div>

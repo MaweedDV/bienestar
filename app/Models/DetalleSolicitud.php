@@ -14,4 +14,14 @@ class DetalleSolicitud extends Model
         'valor_total',
         'solicitud_gas_id'
     ];
+
+    public function solicitudGas()
+    {
+        return $this->belongsTo(SolicitudGas::class);
+    }
+
+    public function tipoGas()
+    {
+        return $this->belongsTo(ValesDeGas::class, 'id_tipo_gas');
+    }
 }

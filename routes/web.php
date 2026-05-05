@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController as FrontEndHomeController;
 use App\Http\Controllers\Backend\HomeController as BackEndHomeController;
+use App\Http\Controllers\Backend\SolicitudController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\BackendFuncionario\BackendFuncionarioController;
 use App\Http\Controllers\BackendFuncionario\PerfilFuncionarioController;
@@ -20,6 +21,17 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     // Users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+    // Solicitudes de Gas
+    Route::get('/solicitudes-de-gas', [SolicitudController::class, 'index'])->name('solicitudesDeGas.index');
+    Route::get('/{id}', [SolicitudController::class, 'show'])->name('solicitudesDeGas.show');
+    Route::get('/solicitudes/buscar', [SolicitudController::class, 'buscar'])->name('solicitudes.buscar');
+    Route::put('/{id}', [SolicitudController::class, 'update'])->name('solicitudes.update');
+    Route::get('/solicitudes/historial', [SolicitudController::class, 'historial'])->name('solicitudes.historial');
+    Route::get('/solicitudes/entregado/{id}', [SolicitudController::class, 'entregadoDetalle'])->name('solicitudesDeGas.entregadoDetalle');
+    // Route::post('/solicitudes-de-gas', [SolicitudController::class, 'store'])->name('solicitudesDeGas.store');
+
+
 
 });
 

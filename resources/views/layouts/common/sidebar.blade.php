@@ -27,58 +27,41 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/admin/dashboard">
-                        <i class="nav-main-link-icon fa fa-location-arrow"></i>
-                        <span class="nav-main-link-name">Dashboard</span>
-                        <span class="nav-main-link-badge badge rounded-pill bg-primary">5</span>
+                    <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{route("dashboard")}}">
+                        <i class="nav-main-link-icon si si-home"></i>
+                        <span class="nav-main-link-name">Inicio</span>
                     </a>
                 </li>
                 <li class="nav-main-heading">Administrador</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                         aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon fa fa-lightbulb"></i>
+                        <i class="nav-main-link-icon fa fa-box-archive"></i>
                         <span class="nav-main-link-name">Mantenedores</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}"
                                 href="{{ route('users.index') }}">
+                                <i class="nav-main-link-icon fa fa-user-group"></i>
                                 <span class="nav-main-link-name">Usuarios</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link" href="/">
-                        <i class="nav-main-link-icon fa fa-globe"></i>
-                        <span class="nav-main-link-name">Landing</span>
-                    </a>
-                </li>
-                <li class="nav-main-heading">Tienda</li>
+                <li class="nav-main-heading">Módulos</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                         aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon fa fa-lightbulb"></i>
-                        <span class="nav-main-link-name">Examples</span>
+                        <i class="nav-main-link-icon fa fa-ticket"></i>
+                        <span class="nav-main-link-name">Vales de Gas</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}"
-                                href="/pages/datatables">
-                                <span class="nav-main-link-name">DataTables</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}"
-                                href="/pages/slick">
-                                <span class="nav-main-link-name">Slick Slider</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}"
-                                href="/pages/blank">
-                                <span class="nav-main-link-name">Blank</span>
+                                href="{{ route('solicitudesDeGas.index') }}">
+                                <i class="nav-main-link-icon fa fa-clipboard-list"></i>
+                                <span class="nav-main-link-name">Solicitudes Ingresadas</span>
                             </a>
                         </li>
                     </ul>

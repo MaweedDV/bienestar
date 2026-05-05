@@ -46,10 +46,10 @@ class UsersDataTable extends dataTable
                     ->buttons([
                         Button::make('excel'),
                         Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reload'),
-                        Button::raw('test')->action('editAction()')
+                       // Button::make('pdf'),
+                       // Button::make('print'),
+                        //Button::make('reload'),
+                        //Button::raw('test')->action('editAction()')
                     ]);
     }
 
@@ -60,15 +60,19 @@ class UsersDataTable extends dataTable
     {
         return [
 
-            Column::make('id')->title('')->visible(true)
-                ->searchable(true)
-                ->orderable(true)
-                ->render('\'<div class="editor-active" >\' + (full[\'deleted_at\'] == null ? \'<i class="fas fa-check-circle client-is-active"></i>\' : \'<i class="fas fa-times-circle"></i>\') + \'</div>\';\'\'' )
-                ->exportable(true)
-                ->printable(true)
-                ->width(5),
+            // Column::make('id')->title('')->visible(true)
+            //     ->searchable(true)
+            //     ->orderable(true)
+            //     ->render('\'<div class="editor-active" >\' + (full[\'deleted_at\'] == null ? \'<i class="fas fa-check-circle client-is-active"></i>\' : \'<i class="fas fa-times-circle"></i>\') + \'</div>\';\'\'' )
+            //     ->exportable(true)
+            //     ->printable(true)
+            //     ->width(5),
             Column::make('id')->title('#')->width(5),
-            Column::make('name')->title('Nombre'),
+            Column::make('nombre')->title('Nombre'),
+            Column::make('apellido_paterno')->title('Apellido Paterno'),
+            Column::make('apellido_materno')->title('Apellido Materno'),
+            Column::make('rut')->title('RUT'),
+             Column::make('telefono')->title('Teléfono'),
             Column::make('email')->title('Correo electrónico'),
             Column::make('role')->title('Rol'),
         ];

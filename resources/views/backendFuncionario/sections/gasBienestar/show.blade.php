@@ -50,16 +50,51 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{$cantidadTotal}} vales de gas solicitados
+                            {{ $cantidadTotal }} vales de gas solicitados
                         </div>
-                    </div>
-                    <div class="block-content block-content-full text-end ">
-                        <a href="{{ route('solicitudFuncionario.index') }}" class="btn btn-sm btn-primary">Volver</a>
+                         <div class="block-content">
+                            <h4>Observaciones</h4>
+                            <p>{{ $solicitud->observaciones ?? 'No hay observaciones' }}</p>
+                        </div>
+                        @if ($solicitud->retira_tercero == 'si' && $solicitud->pdf_tercero)
+                            <div class="block-content">
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>
+                                            <i class="fa fa-file-pdf me-1"></i>
+                                            Autorización para retiro por tercero
+                                        </strong>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="text-end mb-3">
+
+                                            <a href="{{ asset('storage/' . $solicitud->pdf_tercero) }}" target="_blank"
+                                                class="btn btn-sm btn-primary">
+
+                                                <i class="fa fa-up-right-from-square"></i>
+                                                Abrir en otra pestaña
+
+                                            </a>
+
+                                        </div>
+
+                                        <iframe src="{{ asset('storage/' . $solicitud->pdf_tercero) }}" width="100%"
+                                            height="650" style="border: 1px solid #ddd; border-radius: 5px;">
+                                        </iframe>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endif
+                        <div class="block-content block-content-full text-end ">
+                            <a href="{{ route('solicitudFuncionario.index') }}" class="btn btn-sm btn-primary">Volver</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
-
-
+    @endsection

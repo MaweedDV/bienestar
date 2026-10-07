@@ -64,6 +64,20 @@
                                 <span class="nav-main-link-name">Solicitudes Ingresadas</span>
                             </a>
                         </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}"
+                                href="{{ route('prestamosDeGas.index') }}">
+                                <i class="nav-main-link-icon fa fa-handshake"></i>
+                                <span class="nav-main-link-name">Prestamo Vales de Gas</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}"
+                                href="{{ route('solicitudesDeGas.stock') }}">
+                                <i class="nav-main-link-icon fa fa-dolly"></i>
+                                <span class="nav-main-link-name">Ingreso de Stock</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

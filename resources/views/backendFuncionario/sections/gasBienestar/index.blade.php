@@ -47,9 +47,16 @@
                                             <td>{{ $solicitud->cantidadTotalVales }}</td>
                                             <td>{{ $solicitud->fecha_solicitud }}</td>
                                             <td>{{ $solicitud->fecha_entrega ?? 'Pendiente' }}</td>
-                                            <td>
-                                                <a href="{{ route('solicitudFuncionario.show', $solicitud->id) }}" class="btn btn-sm btn-primary">Ver detalle</a>
-                                            </td>
+                                                @if ($solicitud->estado == "entregado")
+                                                    <td>
+                                                        <a href="{{ route('solicitudFuncionario.show', $solicitud->id) }}" class="btn btn-sm btn-primary">Ver detalle</a>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        <a href="{{ route('solicitudFuncionario.show', $solicitud->id) }}" class="btn btn-sm btn-primary">Ver detalle</a>
+                                                        <a href="{{ route('solicitudFuncionario.edit', $solicitud->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

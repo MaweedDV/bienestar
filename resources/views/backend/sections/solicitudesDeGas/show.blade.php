@@ -51,6 +51,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="form-group">
+                                <label for="observaciones">Observaciones:</label>
+                                <textarea id="observaciones" name="observaciones" rows="5" style="width: 100%; height: 120px;" class="form-control">{{ $solicitud->observaciones ?? '' }}</textarea>
+                            </div>
                             {{$cantidadTotal}} vales de gas solicitados
                         </div>
                     </div>

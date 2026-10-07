@@ -20,6 +20,7 @@ return new class extends Migration
                 $table->date('fecha_solicitud');
                 $table->date('fecha_modificacion')->nullable();
                 $table->date('fecha_entrega')->nullable();
+                $table->text('observaciones')->nullable();
                 $table->integer('costo_total')->nullable();
             $table->timestamps();
         });

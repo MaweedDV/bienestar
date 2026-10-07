@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\BackendFuncionario\BackendFuncionarioController;
 use App\Http\Controllers\BackendFuncionario\PerfilFuncionarioController;
 use App\Http\Controllers\BackendFuncionario\SolicitudFuncionarioController;
+use App\Http\Controllers\Backend\PrestamosController;
 use App\Models\User;
 use PHPUnit\Metadata\Group;
 use Yajra\DataTables\Facades\DataTables;
@@ -24,15 +25,20 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     // Solicitudes de Gas
     Route::get('/solicitudes-de-gas', [SolicitudController::class, 'index'])->name('solicitudesDeGas.index');
-    Route::get('/{id}', [SolicitudController::class, 'show'])->name('solicitudesDeGas.show');
     Route::get('/solicitudes/buscar', [SolicitudController::class, 'buscar'])->name('solicitudes.buscar');
-    Route::put('/{id}', [SolicitudController::class, 'update'])->name('solicitudes.update');
     Route::get('/solicitudes/historial', [SolicitudController::class, 'historial'])->name('solicitudes.historial');
+    Route::post('/adminSolicitud', [SolicitudController::class, 'store'])->name('solicitudAdmin.store');
+    Route::get('/create/admin', [SolicitudController::class, 'create'])->name('solicitudAdmin.create');
+    Route::post('/create/admin/selected', [SolicitudController::class, 'solicitudGasAdmin'])->name('solicitudAdminsselected.create');
+    Route::get('/stock', [SolicitudController::class, 'indexStock'])->name('solicitudesDeGas.stock');
+
+    //prestamos de gas
+    Route::get('/prestamos', [PrestamosController::class, 'index'])->name('prestamosDeGas.index');
+
+    //rutas dinámicas
+    Route::get('/{id}', [SolicitudController::class, 'show'])->name('solicitudesDeGas.show');
+    Route::put('/{id}', [SolicitudController::class, 'update'])->name('solicitudes.update');
     Route::get('/solicitudes/entregado/{id}', [SolicitudController::class, 'entregadoDetalle'])->name('solicitudesDeGas.entregadoDetalle');
-    // Route::post('/solicitudes-de-gas', [SolicitudController::class, 'store'])->name('solicitudesDeGas.store');
-
-
-
 });
 
 Route::middleware(['auth', 'role:funcionario'])->prefix('funcionario')->group(function () {
@@ -45,6 +51,8 @@ Route::middleware(['auth', 'role:funcionario'])->prefix('funcionario')->group(fu
         Route::get('/create', [SolicitudFuncionarioController::class, 'create'])->name('solicitudFuncionario.create');
         Route::post('/', [SolicitudFuncionarioController::class, 'store'])->name('solicitudFuncionario.store');
         Route::get('/{id}', [SolicitudFuncionarioController::class, 'show'])->name('solicitudFuncionario.show');
+        Route::get('/edit/{id}', [SolicitudFuncionarioController::class, 'edit'])->name('solicitudFuncionario.edit');
+        Route::put('/{id}', [SolicitudFuncionarioController::class, 'update'])->name('solicitudFuncionario.update');
     });
 
     // menú perfil

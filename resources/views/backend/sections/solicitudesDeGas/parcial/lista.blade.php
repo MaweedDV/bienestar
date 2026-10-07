@@ -16,7 +16,7 @@
                                         <tr>
                                             <td>{{ $solicitud->id }}</td>
                                             <td>{{ $solicitud->rut_funcionario }}</td>
-                                            <td>{{ $solicitud->nombre_funcionario." ".$solicitud->apellido_funcionario }}</td>
+                                            <td>{{ $solicitud->nombre_funcionario." ".$solicitud->apellido_funcionario }}</td>                                            
                                             <td>{{ $solicitud->cantidadTotalVales }}</td>
                                             <td>{{ $solicitud->fecha_solicitud }}</td>
                                             <td>{{ $solicitud->estado }}</td>

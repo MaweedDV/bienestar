@@ -32,11 +32,9 @@
                                 <br>
                                 <input type="text" id="buscador" class="form-control mb-3" placeholder="Buscar...">
                             </div>
-
                                 <div class="col-md-12">
                                     @include('backend.sections.solicitudesDeGas.parcial.lista')
                                 </div>
-
                         </div>
                     </div>
             </div>

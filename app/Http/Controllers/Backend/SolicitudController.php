@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SolicitudEntregada;
+use App\Mail\SolicitudRegistrada;
 use App\Models\DetalleSolicitud;
 use App\Models\SolicitudGas;
 use App\Models\User;
@@ -56,7 +57,17 @@ class SolicitudController extends Controller
      */
     public function create()
     {
-        //
+        $funcionarios = User::where('role', 'funcionario')->where('estado', 1)->get();
+
+        return view('backend.sections.solicitudesDeGas.createSelectFunc', compact('funcionarios'));
+    }
+
+    public function solicitudGasAdmin(request $request)
+    {
+        $tipoGas = ValesDeGas::all();
+        $funcionario = User::where('id', $request->funcionario)->where('estado', 1)->first();
+
+        return view('backend.sections.solicitudesDeGas.create', compact('funcionario', 'tipoGas'));
     }
 
     /**
@@ -64,7 +75,55 @@ class SolicitudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = User::where('id', $request->idFuncionario)->first();
+        $solicitudes = SolicitudGas::where('rut_funcionario', $usuario->rut)->whereMonth('fecha_solicitud', date('m'))->whereYear('fecha_solicitud', date('Y'))->get();
+        // dd($usuario);
+
+        if($solicitudes->isEmpty() ) {
+            $cantidadTotal = 0;
+
+            foreach ($request->items as $item) {
+            $cantidadTotal = $cantidadTotal + $item['cantidad'];
+            }
+
+
+
+            $solicitud = SolicitudGas::create([
+                'rut_funcionario' => $usuario->rut,
+                'nombre_funcionario' => $usuario->nombre." ".$usuario->apellido_paterno." ".$usuario->apellido_materno,
+                'estado' => 'pendiente',
+                'cantidadTotalVales' => $cantidadTotal,
+                'fecha_solicitud' => now(),
+            ]);
+
+
+            foreach ($request->items as $item) {
+                for ( $i = 0; $i < $item['cantidad']; $i++) {
+                    $detalleSolicitud = DetalleSolicitud::create([
+                        'solicitud_gas_id' => $solicitud->id,
+                        'id_tipo_gas' => $item['tipoGas'],
+                    ]);
+                }
+            }
+
+            // $detalleSolicitud = DetalleSolicitud::create([
+            //     'solicitud_gas_id' => $solicitud->id,
+            //     'cantidad' => 2,
+            //     'id_tipo_gas' => 1,
+            // ]);
+            $mail = $usuario->email;
+
+            $solicitud->load('detalles'); // Cargar los detalles de la solicitud para incluirlos en el correo
+            $solicitud->detalles->load('tipoGas'); // Cargar la relación con el tipo de gas para cada detalle
+
+            //->>>enviar correo notificando nueva solicitud
+            Mail::to($mail)->send(new SolicitudRegistrada($solicitud));
+
+            return redirect()->route('dashboard')->with('success', 'Solicitud ingresada correctamente');
+
+        }else{
+            return redirect()->route('dashboard')->with('error', 'No se pueden ingresar nuevas solicitudes mientras haya una pendiente');
+        }
     }
 
     /**
@@ -80,10 +139,13 @@ class SolicitudController extends Controller
         // foreach ($detalles as $item) {
         //    $cantidadTotal = $cantidadTotal + $item->cantidad;
         // }
-
-
-
         return view('backend.sections.solicitudesDeGas.show', compact('detalles', 'solicitud', 'tipoGas', 'cantidadTotal'));
+    }
+
+    public function indexStock()
+    {
+
+        return view('backend.sections.solicitudesDeGas.stock.index');
     }
 
     public function entregadoDetalle(string $id)
@@ -124,7 +186,8 @@ class SolicitudController extends Controller
         // 🔹 Actualizar solicitud
         $solicitud->update([
             'fecha_entrega' => now(),
-            'estado' => 'entregado'
+            'estado' => 'entregado',
+            'observaciones' => $request->observaciones,
         ]);
 
         // 🔹 Obtener usuario
@@ -151,4 +214,5 @@ class SolicitudController extends Controller
     {
         //
     }
+
 }

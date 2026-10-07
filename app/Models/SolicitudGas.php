@@ -13,9 +13,12 @@ class SolicitudGas extends Model
         'estado',
         'cantidadTotalVales',
         'fecha_solicitud',
+        'retira_tercero',
         'fecha_modificacion',
         'fecha_entrega',
-        'costo_total'
+        'observaciones',
+        'costo_total',
+        'pdf_tercero'
     ];
 
     public function detalles()

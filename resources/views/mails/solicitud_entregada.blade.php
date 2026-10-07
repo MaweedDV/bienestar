@@ -27,7 +27,7 @@
             <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
                 <thead>
                     <tr style="background:#f1f1f1;">
-                        <th style="padding:10px; border:1px solid #ddd; text-align:left;">#</th>
+                        {{-- <th style="padding:10px; border:1px solid #ddd; text-align:left;">#</th> --}}
                         <th style="padding:10px; border:1px solid #ddd; text-align:left;">Tipo Gas</th>
                         <th style="padding:10px; border:1px solid #ddd; text-align:left;">Código Vale</th>
                     </tr>
@@ -35,7 +35,7 @@
                 <tbody>
                     @foreach($solicitud->detalles as $index => $detalle)
                         <tr>
-                            <td style="padding:10px; border:1px solid #ddd;">{{ $index + 1 }}</td>
+                            {{-- <td style="padding:10px; border:1px solid #ddd;">{{ $index + 1 }}</td> --}}
                             <td style="padding:10px; border:1px solid #ddd;">
                                 {{ $detalle->tipoGas->descripcion ?? 'Sin nombre' }}
                             </td>
@@ -46,6 +46,8 @@
                     @endforeach
                 </tbody>
             </table>
+            <h3 style="margin-bottom:10px;">Observaciones</h3>
+            <p>{{ $solicitud->observaciones ?? 'No hay observaciones' }}</p>
         </div>
 
         <!-- FOOTER -->

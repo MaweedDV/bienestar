@@ -1,4 +1,4 @@
-@extends('layouts.backendFuncionario')
+@extends('layouts.backend')
 
 @section('content')
     <div class="bg-body-light">
@@ -23,15 +23,17 @@
         <div class="row items-push">
             <div class="col-md-12">
                 <div class="block block-rounded">
-               <form method="POST" action="{{ route('solicitudFuncionario.store') }}">
+               <form method="POST" action="{{ route('solicitudAdmin.store') }}">
                     @csrf
                     <div class="block-content">
                         <div class="row mb-4">
                             <div class="col-12">
-                                <label class="form-label" for=tan"example-ltf-email2">Fecha: {{ \Carbon\Carbon::parse(date('d-m-Y'))->format('d-m-Y') }}</label>
+                                <label class="form-label" for=tan"example-ltf-email2">Fecha: {{ \Carbon\Carbon::parse($solicitud->fecha_solicitud)->format('d-m-Y') }}</label>
                             </div>
                             <div class="col-3">
-                                <label class="form-label" for="example-select-floating"></label>
+                                 <input type="hidden" name="idFuncionario" value="{{$funcionario->id}}">
+                                <label class="form-label" for="example-select-floating">Funcionario:</label>
+                                <label class="form-label" for="example-select-floating">{{ $funcionario->nombre }} {{ $funcionario->apellido_paterno }} {{ $funcionario->apellido_materno }}</label>
                             </div>
                             <div class="col-3">
                                     <label for="tipoGas" class="form-label ">Seleccione Tipo de Gas:</label>
@@ -78,13 +80,8 @@
                         </div>
                     </div>
                     <div class="block-content block-content-full text-end ">
-                         <a href="{{ route('solicitudFuncionario.index') }}"
-                           class="btn btn-sm btn-alt-secondary">
-
-                            volver
-
-                        </a>
-
+                        <button type="button" class="btn btn-sm btn-alt-secondary"
+                            data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Guardar</button>
                     </div>
                 </form>
@@ -196,4 +193,5 @@
         fila.remove();
     }
 </script> --}}
+
 

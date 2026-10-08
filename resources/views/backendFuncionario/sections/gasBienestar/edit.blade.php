@@ -152,7 +152,7 @@
 
                                                     <br>
 
-                                                    <a href="{{ route('solicitudFuncionario.pdfTercero', $solicitud->id) }}"
+                                                    <a href="{{ route('solicitudFuncionario.pdfTercero', $solicitud->id) }}?v={{ $solicitud->updated_at->timestamp }}"
                                                         target="_blank" class="btn btn-sm btn-info mt-2">
 
                                                         <i class="fa fa-file-pdf"></i>

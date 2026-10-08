@@ -53,6 +53,8 @@ Route::middleware(['auth', 'role:funcionario'])->prefix('funcionario')->group(fu
         Route::get('/{id}', [SolicitudFuncionarioController::class, 'show'])->name('solicitudFuncionario.show');
         Route::get('/edit/{id}', [SolicitudFuncionarioController::class, 'edit'])->name('solicitudFuncionario.edit');
         Route::put('/{id}', [SolicitudFuncionarioController::class, 'update'])->name('solicitudFuncionario.update');
+        //visualizacion de pdf de tercero
+        Route::get('/solicitud-funcionario/{id}/pdf-tercero',[SolicitudFuncionarioController::class, 'verPdfTercero'])->name('solicitudFuncionario.pdfTercero');
     });
 
     // menú perfil

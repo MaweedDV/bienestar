@@ -152,7 +152,7 @@
 
                                                     <br>
 
-                                                    <a href="{{ asset('storage/' . $solicitud->pdf_tercero) }}"
+                                                    <a href="{{ route('solicitudFuncionario.pdfTercero', $solicitud->id) }}"
                                                         target="_blank" class="btn btn-sm btn-info mt-2">
 
                                                         <i class="fa fa-file-pdf"></i>

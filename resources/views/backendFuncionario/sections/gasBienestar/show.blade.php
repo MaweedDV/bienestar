@@ -71,7 +71,7 @@
 
                                         <div class="text-end mb-3">
 
-                                            <a href="{{ asset('storage/' . $solicitud->pdf_tercero) }}" target="_blank"
+                                            <a href="{{ route('solicitudFuncionario.pdfTercero', $solicitud->id) }}" target="_blank"
                                                 class="btn btn-sm btn-primary">
 
                                                 <i class="fa fa-up-right-from-square"></i>
@@ -81,7 +81,7 @@
 
                                         </div>
 
-                                        <iframe src="{{ asset('storage/' . $solicitud->pdf_tercero) }}" width="100%"
+                                        <iframe src="{{ route('solicitudFuncionario.pdfTercero', $solicitud->id) }}" width="100%"
                                             height="650" style="border: 1px solid #ddd; border-radius: 5px;">
                                         </iframe>
 

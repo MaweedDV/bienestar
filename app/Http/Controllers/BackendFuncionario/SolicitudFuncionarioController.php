@@ -419,6 +419,30 @@ class SolicitudFuncionarioController extends Controller
                 'Solicitud actualizada correctamente'
             );
     }
+
+    public function verPdfTercero(string $id)
+    {
+        $solicitud = SolicitudGas::where('id', $id)
+            ->where('rut_funcionario', auth()->user()->rut)
+            ->firstOrFail();
+
+        if (!$solicitud->pdf_tercero) {
+            abort(404, 'La solicitud no tiene un PDF adjunto.');
+        }
+
+        $ruta = storage_path(
+            'app/public/' . $solicitud->pdf_tercero
+        );
+
+        if (!file_exists($ruta)) {
+            abort(404, 'El archivo PDF no existe.');
+        }
+
+        return response()->file($ruta, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . basename($ruta) . '"',
+        ]);
+    }
     /**
      * Remove the specified resource from storage.
      */
